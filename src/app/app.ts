@@ -2,18 +2,18 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 declare const Hammer: any;
-delete Hammer.defaults.cssProps.userSelect;
-delete Hammer.defaults.cssProps.touchCallout;
-delete Hammer.defaults.cssProps.userDrag;
-delete Hammer.defaults.cssProps.touchSelect;
-delete Hammer.defaults.cssProps.tapHighlightColor;
-delete Hammer.defaults.cssProps.contentZooming;
+// delete Hammer.defaults.cssProps.userSelect;
+// delete Hammer.defaults.cssProps.touchCallout;
+// delete Hammer.defaults.cssProps.userDrag;
+// delete Hammer.defaults.cssProps.touchSelect;
+// delete Hammer.defaults.cssProps.tapHighlightColor;
+// delete Hammer.defaults.cssProps.contentZooming;
 
-Hammer.defaults = {
-    ...Hammer.defaults, ...{
-        touchAction: 'inherit'
-    }
-}
+// Hammer.defaults = {
+//     ...Hammer.defaults, ...{
+//         touchAction: 'inherit'
+//     }
+// }
 export class MyHammerConfig extends HammerGestureConfig {
     overrides = <any>{
         'swipe': { direction: Hammer.DIRECTION_ALL },
