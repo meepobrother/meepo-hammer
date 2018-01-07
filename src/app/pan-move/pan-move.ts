@@ -5,12 +5,12 @@ import { UuidService } from 'meepo-uuid';
 
 @Directive({ selector: '[panMove]' })
 export class PanMoveDirective implements OnInit {
-    position: string;
+    _position: any;
     width: string;
     height: string;
-    point: any = {
-        left: undefined,
-        top: undefined
+    _point: any = {
+        right: undefined,
+        bottom: undefined
     };
     @HostListener('panstart', ['$event'])
     panstart(e: any) {
@@ -29,6 +29,15 @@ export class PanMoveDirective implements OnInit {
         }
     }
     @Input() panMove: string;
+    // 位置
+    @Input()
+    set point(val: any) {
+        this._point = val;
+    }
+    get point() {
+        return this._point;
+    }
+
     constructor(
         public ele: ElementRef,
         public render: Renderer2,
@@ -37,6 +46,7 @@ export class PanMoveDirective implements OnInit {
     ) { }
 
     ngOnInit() {
+        // 初始化上一次的位置
         if (!this.util.isBlank(this.panMove) && this.panMove) {
             let point: any = this.store.get(this.panMove, this.point);
             if (!this.util.isBlank(point.left)) {
@@ -47,15 +57,25 @@ export class PanMoveDirective implements OnInit {
                 this.ele.nativeElement.style.top = point.top + 'px';
                 this.checkStyle();
             }
+            if (!this.util.isBlank(point.bottom)) {
+                this.ele.nativeElement.style.bottom = point.bottom + 'px';
+                this.checkStyle();
+            }
+            if (!this.util.isBlank(point.right)) {
+                this.ele.nativeElement.style.right = point.right + 'px';
+                this.checkStyle();
+            }
         }
         let styles = window.getComputedStyle(this.ele.nativeElement);
-        this.position = styles.position;
+        // this.position = styles.position;
         this.width = styles.width;
         this.height = styles.height;
     }
 
     checkStyle() {
-        if (this.position !== 'absolute' && this.position !== 'fixed') {
+        let styles = window.getComputedStyle(this.ele.nativeElement);
+        let position = styles.position;
+        if (position !== 'absolute' && position !== 'fixed') {
             this.render.setStyle(this.ele.nativeElement, 'position', 'absolute');
             this.render.setStyle(this.ele.nativeElement, 'width', this.width);
             this.render.setStyle(this.ele.nativeElement, 'height', this.height);
@@ -68,9 +88,26 @@ export class PanMoveDirective implements OnInit {
         if (!this.util.isBlank(this.point.top)) {
             this.ele.nativeElement.style.top = (parseInt(this.point.top) + y) + 'px';
         }
+        if (!this.util.isBlank(this.point.bottom)) {
+            this.ele.nativeElement.style.bottom = (parseInt(this.point.bottom) + x) + 'px';
+        }
+        if (!this.util.isBlank(this.point.right)) {
+            this.ele.nativeElement.style.right = (parseInt(this.point.right) + y) + 'px';
+        }
     }
     getElementStyleSize(ele: HTMLElement) {
-        this.point.top = ele.offsetTop + ele.parentElement.scrollTop;
-        this.point.left = ele.offsetLeft + ele.parentElement.scrollLeft;
+        let styles = window.getComputedStyle(this.ele.nativeElement);
+        if (!this.util.isBlank(this.point.left)) {
+            this.point.left = ele.offsetLeft + ele.parentElement.scrollLeft;
+        }
+        if (!this.util.isBlank(this.point.top)) {
+            this.point.top = ele.offsetTop + ele.parentElement.scrollTop;
+        }
+        if (!this.util.isBlank(this.point.bottom)) {
+            this.point.bottom = styles.bottom;
+        }
+        if (!this.util.isBlank(this.point.right)) {
+            this.point.right = styles.right;
+        }
     }
 }
