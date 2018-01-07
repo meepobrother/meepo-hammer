@@ -11,7 +11,7 @@ delete Hammer.defaults.cssProps.contentZooming;
 
 Hammer.defaults = {
     ...Hammer.defaults, ...{
-        touchAction: 'none'
+        touchAction: 'manipulation'
     }
 }
 export class MyHammerConfig extends HammerGestureConfig {
