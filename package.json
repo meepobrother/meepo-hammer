@@ -1,7 +1,7 @@
 {
-    "name": "meepo-swiper",
-    "version": "1.1.0",
-    "description": "runner for angular",
+    "name": "meepo-hammer",
+    "version": "1.1.1",
+    "description": "hammer for angular",
     "main": "./bundles/meepo.umd.js",
     "module": "./esm5/meepo.js",
     "es2015": "./esm2015/meepo.js",
@@ -18,15 +18,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/meepobrother/meepo-swiper.git"
+        "url": "git+https://github.com/meepobrother/meepo-hammer.git"
     },
     "keywords": [],
     "author": "imeepos",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/meepobrother/meepo-swiper/issues"
+        "url": "https://github.com/meepobrother/meepo-hammer/issues"
     },
-    "homepage": "https://github.com/meepobrother/meepo-swiper/README.md",
+    "homepage": "https://github.com/meepobrother/meepo-hammer/README.md",
     "devDependencies": {
         "@angular/cli": ">=1.6.1",
         "@angular/compiler": ">=5.1.2",

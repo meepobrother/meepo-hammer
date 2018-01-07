@@ -264,7 +264,7 @@ switch (target) {
 
 export default {
     exports: 'named',
-    name: 'meepo-swiper',
+    name: 'meepo-hammer',
     plugins,
     external: Object.keys(globals),
     globals,
