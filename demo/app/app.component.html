@@ -1,7 +1,7 @@
-<div class="pan" panMove="pan1">
+<div class="pan" panMove="pan1" [point]="{bottom:'10px',right:'10px'}">
     pan
 </div>
 
-<div class="pinch-scale" panMove [(rotating)]="rotating">
+<div class="pinch-scale" [(rotating)]="rotating">
     {{rotating|json}}
 </div>
